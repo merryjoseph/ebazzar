@@ -1,6 +1,6 @@
 package com.sayone.ebazzar.service;
 
-import com.sayone.ebazzar.document.ElasticProduct;
+//import com.sayone.ebazzar.document.ElasticProduct;
 import com.sayone.ebazzar.dto.ProductDto;
 import com.sayone.ebazzar.entity.ProductEntity;
 import com.sayone.ebazzar.entity.SubCategoryEntity;
@@ -15,7 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+//import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Service;
 
 
@@ -29,8 +29,8 @@ public class ProductService {
     ProductRepository productRepository;
     @Autowired
     SubCategoryRepository subCategoryRepository;
-    @Autowired
-    ElasticsearchRepository elasticsearchRepository;
+//    @Autowired
+//    ElasticsearchRepository elasticsearchRepository;
 
     public Page<ProductEntity>  getProduct(int page, int limit,String sortBy) {
         Sort sort=Sort.by(Sort.Direction.ASC,sortBy);
@@ -61,15 +61,15 @@ public class ProductService {
             BeanUtils.copyProperties(saveProduct, returnValue);
             returnValue.setSubCategoryName(saveProduct.getSubCategory().getSubCategoryName());
 
-
-            ElasticProduct elasticProduct = new ElasticProduct();
-            elasticProduct.setName(saveProduct.getProductName());
-            elasticProduct.setId(saveProduct.getProductId());
-            elasticProduct.setSubcategory(saveProduct.getSubCategory().getSubCategoryName());
-            elasticProduct.setPrice(saveProduct.getPrice().toString());
-            elasticProduct.setQuantity(saveProduct.getQuantity().toString());
-            elasticProduct.setDescription(saveProduct.getDescription());
-            elasticsearchRepository.save(elasticProduct);
+//
+//            ElasticProduct elasticProduct = new ElasticProduct();
+//            elasticProduct.setName(saveProduct.getProductName());
+//            elasticProduct.setId(saveProduct.getProductId());
+//            elasticProduct.setSubcategory(saveProduct.getSubCategory().getSubCategoryName());
+//            elasticProduct.setPrice(saveProduct.getPrice().toString());
+//            elasticProduct.setQuantity(saveProduct.getQuantity().toString());
+//            elasticProduct.setDescription(saveProduct.getDescription());
+//            elasticsearchRepository.save(elasticProduct);
             return returnValue;
         } else {
             product.setSubCategory(subCategoryRepository.findBySubCategoryName("Others"));
